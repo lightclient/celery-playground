@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  redis:
+    image: "redis"
+    ports:
+      - "6379:6379"
+  app:
+    build: .
+    command: bash -c "python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000"
+    ports:
+     - "8000:8000"
+  worker:
+    build: .
+    command: celery -E -A proj worker -l info
+  flower:  
+    image: mher/flower
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - FLOWER_PORT=8888
+    ports:  
+      - 8888:8888
