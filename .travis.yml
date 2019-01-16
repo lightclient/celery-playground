@@ -1,0 +1,12 @@
+sudo: required
+services:
+  - docker
+env:
+  global:
+    - COMMIT_SHA=$(git rev-parse HEAD)
+before_install:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build . -t consensysbounties/celery-playground:latest
+  - docker build . -t consensysbounties/celery-playground:$COMMIT_SHA
+  - docker push consensysbounties/celery-playground:latest
+  - docker push consensysbounties/celery-playground:$COMMIT_SHA
