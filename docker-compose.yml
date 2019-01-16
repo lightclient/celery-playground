@@ -12,7 +12,7 @@ services:
      - "8000:8000"
   worker:
     build: .
-    command: celery -E -A proj worker -l info
+    command: celery -E -A celery_playground worker -l info
   flower:  
     image: mher/flower
     environment:
