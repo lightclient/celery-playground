@@ -11,7 +11,10 @@ CELERY_BROKER_URL = 'redis://redis:6379/0'
 #: Only add pickle to this list if your broker is secured
 #: from unwanted access (see userguide/security.html)
 CELERY_ACCEPT_CONTENT = ['json']
-CELERY_RESULT_BACKEND = 'db+sqlite:///results.sqlite'
+CELERY_RESULT_BACKEND = "redis"
+CELERY_REDIS_HOST = "redis"
+CELERY_REDIS_PORT = 6379
+CELERY_REDIS_DB = 0
 CELERY_TASK_SERIALIZER = 'json'
 
 # Django settings for proj project.
