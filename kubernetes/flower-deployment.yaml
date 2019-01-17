@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: flower
+  template:
+    metadata:
+      labels:
+        component: flower
+    spec:
+      containers:
+        - name: flower
+          image: mher/flower
+          ports:
+            - containerPort: 8888
+          env:
+            - name: CELERY_BROKER_URL
+              value: redis://redis:6379/0
+            - name: FLOWER_PORT
+              value: 8888
