@@ -7,8 +7,8 @@ import os
 # for relative imports by default.
 
 # Celery settings
-CELERY_REDIS_HOST = os.environ.get('REDIS_HOST')
-CELERY_REDIS_PORT = os.environ.get('REDIS_PORT')
+CELERY_REDIS_HOST = os.environ.get('REDIS_HOST') or 'redis'
+CELERY_REDIS_PORT = os.environ.get('REDIS_PORT') or  6379 
 
 CELERY_BROKER_URL = f'redis://{CELERY_REDIS_HOST}:{CELERY_REDIS_PORT}/0'
 

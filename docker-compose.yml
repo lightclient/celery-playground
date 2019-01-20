@@ -10,15 +10,9 @@ services:
     command: bash -c "python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000"
     ports:
      - "8000:8000"
-    environment:
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
   worker:
     build: .
     command: celery -E -A celery_playground worker -l info
-    environment:
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
   flower:  
     image: mher/flower
     environment:
