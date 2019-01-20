@@ -4,4 +4,5 @@ from tasks import views
 
 urlpatterns = [
      url(r'^add/$', views.Add.as_view()),
+     url(r'^mult/$', views.Mult.as_view()),
 ]

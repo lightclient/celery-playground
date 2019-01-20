@@ -1,3 +1,4 @@
+import os
 from __future__ import absolute_import, unicode_literals
 # ^^^ The above is required if you want to import from the celery
 # library.  If you don't have this then `from celery.schedules import`
@@ -6,14 +7,17 @@ from __future__ import absolute_import, unicode_literals
 
 # Celery settings
 
-CELERY_BROKER_URL = 'redis://redis:6379/0'
+REDIS_HOST = os.environ.get('REDIS_HOST')
+REDIS_PORT = os.environ.get('REDIS_PORT')
+
+CELERY_BROKER_URL = f'redis://{REDIS_HOST}:6379/0'
 
 #: Only add pickle to this list if your broker is secured
 #: from unwanted access (see userguide/security.html)
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_RESULT_BACKEND = "redis"
 CELERY_REDIS_HOST = "redis"
-CELERY_REDIS_PORT = 6379
+CELERY_REDIS_PORT = REDIS_PORT
 CELERY_REDIS_DB = 0
 CELERY_TASK_SERIALIZER = 'json'
 

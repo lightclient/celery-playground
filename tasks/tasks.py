@@ -13,7 +13,8 @@ def add(x, y):
 
 
 @shared_task
-def mul(x, y):
+def mult(x, y):
+    sleep(randint(1, 20))
     return x * y
 
 

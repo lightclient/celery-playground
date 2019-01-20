@@ -15,3 +15,9 @@ spec:
       containers:
         - name: worker
           image: consensysbounties/celery-playground
+          command: ["celery", "-E", "-A", "celery_playground", "worker", "-l", "info"]
+          env:
+          - name: REDIS_HOST
+            value: redis-cluster-ip-service
+          - name: REDIS_PORT
+            value: 6379
