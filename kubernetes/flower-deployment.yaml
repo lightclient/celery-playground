@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: worker-deployment
+  name: flower-deployment
 spec:
   replicas: 1
   selector:
@@ -19,6 +19,6 @@ spec:
             - containerPort: 8888
           env:
             - name: CELERY_BROKER_URL
-              value: redis://redis:6379/0
+              value: "redis://redis-cluster-ip-service:6379/0"
             - name: FLOWER_PORT
-              value: 8888
+              value: "8888"
