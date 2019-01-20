@@ -18,6 +18,6 @@ spec:
           command: ["celery", "-E", "-A", "celery_playground", "worker", "-l", "info"]
           env:
           - name: REDIS_HOST
-            value: redis-cluster-ip-service
+            value: "redis-cluster-ip-service"
           - name: REDIS_PORT
-            value: 6379
+            value: "6379"
