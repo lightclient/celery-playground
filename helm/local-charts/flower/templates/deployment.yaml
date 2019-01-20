@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "flower.fullname" . }}
+  labels:
+    app: {{ template "flower.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: {{ .Release.Name  | quote }}
+    heritage: {{ .Release.Service  | quote }}
+    version: {{ .Values.image.tag | quote }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "flower.fullname" . }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+        release: {{ .Release.Name  | quote }}
+        heritage: {{ .Release.Service  | quote }}
+        version: {{ .Values.image.tag | quote }}
+    spec:
+      containers:
+        - name: {{ template "flower.fullname" . }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{default "Always" .Values.pullPolicy}}
+          env:
+          - name: CELERY_BROKER_URL
+            value: {{ template "flower.celeryBrokerURL" . }}
+          - name: FLOWER_PORT
+            value: {{ .Values.flower.port | quote }}

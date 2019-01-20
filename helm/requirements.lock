@@ -1,0 +1,15 @@
+dependencies:
+- name: redis
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 1.2.2
+- name: server
+  repository: file://local-charts/server
+  version: 0.1.1
+- name: worker
+  repository: file://local-charts/worker
+  version: 0.1.1
+- name: flower
+  repository: file://local-charts/flower
+  version: 0.1.0
+digest: sha256:326e789f73d414e2e4a0b11b7d4f029f393610520ebeedeb524058a296fd00a3
+generated: 2019-01-20T12:39:33.179336-06:00

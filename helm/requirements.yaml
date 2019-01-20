@@ -1,0 +1,22 @@
+dependencies:
+  - name: redis
+    version: 1.2.2
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    condition: redis.enabled
+    tags:
+    - queue
+  - name: server
+    version: 0.1.1
+    repository: file://local-charts/server
+    tags:
+    - python
+  - name: worker
+    version: 0.1.1
+    repository: file://local-charts/worker
+    tags:
+    - python
+  - name: flower
+    version: 0.1.0
+    repository: file://local-charts/flower
+    tags:
+    - dashboard
