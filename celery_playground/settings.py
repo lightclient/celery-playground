@@ -7,23 +7,20 @@ import os
 # for relative imports by default.
 
 # Celery settings
+CELERY_REDIS_HOST = os.environ.get('REDIS_HOST')
+CELERY_REDIS_PORT = os.environ.get('REDIS_PORT')
 
-REDIS_HOST = os.environ.get('REDIS_HOST')
-REDIS_PORT = os.environ.get('REDIS_PORT')
-
-CELERY_BROKER_URL = f'redis://{REDIS_HOST}:6379/0'
+CELERY_BROKER_URL = f'redis://{CELERY_REDIS_HOST}:{CELERY_REDIS_PORT}/0'
 
 #: Only add pickle to this list if your broker is secured
 #: from unwanted access (see userguide/security.html)
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_RESULT_BACKEND = "redis"
-CELERY_REDIS_HOST = "redis"
-CELERY_REDIS_PORT = REDIS_PORT
+
 CELERY_REDIS_DB = 0
 CELERY_TASK_SERIALIZER = 'json'
 
 # Django settings for proj project.
-
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 

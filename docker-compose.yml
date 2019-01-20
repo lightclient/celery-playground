@@ -16,6 +16,9 @@ services:
   worker:
     build: .
     command: celery -E -A celery_playground worker -l info
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
   flower:  
     image: mher/flower
     environment:
