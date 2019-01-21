@@ -12,7 +12,10 @@ services:
      - "8000:8000"
   worker:
     build: .
-    command: celery -E -B -A celery_playground worker -l info
+    command: celery -E -A celery_playground worker --loglevel=info
+  beat-scheduler:
+    build: .
+    command: celery -A celery_playground beat --loglevel=info
   flower:  
     image: mher/flower
     environment:

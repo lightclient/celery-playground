@@ -11,5 +11,8 @@ dependencies:
 - name: flower
   repository: file://local-charts/flower
   version: 0.1.0
-digest: sha256:326e789f73d414e2e4a0b11b7d4f029f393610520ebeedeb524058a296fd00a3
-generated: 2019-01-20T12:39:33.179336-06:00
+- name: scheduler
+  repository: file://local-charts/scheduler
+  version: 0.1.0
+digest: sha256:387a373e38299dccf89718b6dcd9d17fa3e40c7435420a53ffda1d18461833f8
+generated: 2019-01-21T10:47:29.49773-06:00
